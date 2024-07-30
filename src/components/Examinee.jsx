@@ -1,6 +1,8 @@
 import { useState } from "react";
 import "../App.css";
 import Navbar from "./Navbar";
+import { Link } from 'react-router-dom';
+
 
 function Examinee() {
   const [answer, setAnswer] = useState("");
@@ -109,7 +111,12 @@ function Examinee() {
 
           <div className="flex flex-col gap-2">
             <button className="font-normal w-full btn-bg flex justify-center gap-2 items-center text-md text-white py-3 rounded hover:bg-blue-600 focus:outline-none focus:ring focus:ring-blue-300">Submit Answers</button>
-            <button className="font-normal w-full text-tertiary border-tertiary border-2 flex justify-center gap-2 items-center text-md py-3 rounded hover:bg-tertiary hover:text-light focus:outline-none focus:ring focus:ring-blue-300">Back to Choices</button>
+
+
+            <Link to="/user">
+              <button className="font-normal w-full text-tertiary border-tertiary border-2 flex justify-center gap-2 items-center text-md py-3 rounded hover:bg-tertiary hover:text-light focus:outline-none focus:ring focus:ring-blue-300">Back to Quiz Collections</button>
+            </Link>
+
         </div>
         </div>
 

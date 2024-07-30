@@ -1,10 +1,26 @@
 import { useState } from 'react'
 import '../App.css'
 import logo from '../assets/quizwhiz-logo.svg'
+import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+
 
 function Login() {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+    const navigate = useNavigate();
+
+    const handleUser = (e) => {
+      e.preventDefault();
+
+      if (username === 'admin' && password === "admin123") {
+        navigate('/admin');
+      } else if (username === 'user' && password === "user123") {
+        navigate('/user');
+      } else {
+        alert('Invalid username or password');
+      }
+    }
 
   return (
     <>
@@ -35,13 +51,16 @@ function Login() {
                     required
                 />
                 </div>
+                <Link to="/home">
+                  <button
+                  type="submit"
+                  onClick={handleUser}
+                  className="w-full btn-bg text-white py-3 rounded hover:bg-blue-600 focus:outline-none focus:ring focus:ring-blue-300"
+                  >
+                  Login
+                  </button>
+                </Link>
 
-                <button
-                type="submit"
-                className="w-full btn-bg text-white py-3 rounded hover:bg-blue-600 focus:outline-none focus:ring focus:ring-blue-300"
-                >
-                Login
-                </button>
             </form>
         </div>
         

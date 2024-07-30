@@ -7,8 +7,9 @@ import Login from './components/Login.jsx';
 import Home from './components/Home.jsx';
 import Examiner from './components/Examiner.jsx'
 import Examinee from './components/Examinee.jsx'
+import Admin from './components/Admin.jsx'
+import Users from './components/Users.jsx'
 
-// Define your routes
 const router = createBrowserRouter([
   {
     path: "/",
@@ -26,6 +27,14 @@ const router = createBrowserRouter([
     path: "/examinee",
     element: <Examinee />,
   },
+  {
+    path: "/admin",
+    element: <Admin />,
+  },
+  {
+    path: "/user",
+    element: <Users />,
+  },  
 ]);
 
 ReactDOM.createRoot(document.getElementById('root')).render(
