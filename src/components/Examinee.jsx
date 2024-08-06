@@ -2,10 +2,28 @@ import { useState } from "react";
 import "../App.css";
 import Navbar from "./Navbar";
 import { Link } from 'react-router-dom';
+import Modal from './Modal';
 
 
 function Examinee() {
   const [answer, setAnswer] = useState("");
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const handleOpenModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    // Handle form submission logic here
+    console.log('Form submitted');
+    setIsModalOpen(false);
+  };
 
   return (
     <>
@@ -110,17 +128,42 @@ function Examinee() {
           </div>
 
           <div className="flex flex-col gap-2">
-            <button className="font-normal w-full btn-bg flex justify-center gap-2 items-center text-md text-white py-3 rounded hover:bg-blue-600 focus:outline-none focus:ring focus:ring-blue-300">Submit Answers</button>
-
+            <button className="font-normal w-full btn-bg flex justify-center gap-2 items-center text-md text-white py-3 rounded hover:bg-tertiary focus:outline-none focus:ring focus:ring-blue-300" onClick={handleOpenModal}>Submit Answers</button>
 
             <Link to="/user">
               <button className="font-normal w-full text-tertiary border-tertiary border-2 flex justify-center gap-2 items-center text-md py-3 rounded hover:bg-tertiary hover:text-light focus:outline-none focus:ring focus:ring-blue-300">Back to Quiz Collections</button>
             </Link>
 
-        </div>
+          </div>
         </div>
 
       </div>
+
+      <Modal isOpen={isModalOpen} onClose={handleCloseModal}>
+        <h2 className="text-2xl font-normal  text-center text-black">Your Score</h2>
+        <p className="text-8xl font-medium py-10 text-center text-secondary">20</p>
+        <form onSubmit={handleSubmit}>
+          
+          <div className="flex justify-end">
+          <Link to="/user">
+            <button
+              type="button"
+              onClick={handleCloseModal}
+              className="bg-accent opacity-70 hover:bg-acent hover:opacity-100 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mr-2"
+            >
+              Back to Quizzes
+            </button>
+            </Link>
+              <button
+                type="submit"
+                className="bg-tertiary opacity-70 hover:bg-tertiary hover:opacity-100 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+              >
+                Retake Quiz
+              </button>            
+
+          </div>
+        </form>
+      </Modal>
     </>
   );
 }

@@ -23,9 +23,12 @@ function Examiner() {
             <div className="bg-secondary w-full max-h-screen rounded-2xl px-4 py-8 md:max-w-[50%] md:max-h-[446px]">
               <form>
                 <div className="flex flex-col text-left text-white font-medium gap-2">
-                  <h3 className="pb-10 text-light text-xl font-medium text-center">
+                  {/* <h3 className="pb-2 text-light text-lg font-normal text-center">
                     Customize your Quiz Questions
-                  </h3>
+                  </h3> */}
+                  <h4 className="pb-2 text-white text-2xl font-medium text-center">
+                    Quiz Name
+                  </h4>
                   <label htmlFor="question">Question</label>
                   <input
                     type="text"
@@ -49,7 +52,7 @@ function Examiner() {
 
                 <button
                   type="submit"
-                  className="w-full btn-bg text-white py-3 rounded hover:bg-blue-600 focus:outline-none focus:ring focus:ring-blue-300"
+                  className="w-full btn-bg text-white py-3 rounded hover:bg-tertiary focus:outline-none focus:ring focus:ring-blue-300"
                 >
                   Add Question
                 </button>
@@ -59,7 +62,7 @@ function Examiner() {
                 </Link>
 
                 <Link to="/admin">
-                    <button className="font-medium w-full text-red-400  flex justify-center gap-2 items-center text-md mt-2 py-3 rounded hover:font-medium hover:text-light focus:outline-none focus:ring focus:ring-blue-300">Delete Test</button>    
+                    <button className="font-medium w-full text-red-400  flex justify-center gap-2 items-center text-md mt-2 py-3 rounded hover:font-medium hover:text-accent focus:outline-none focus:ring focus:ring-blue-300">Delete Test</button>    
                 </Link>
 
 
@@ -84,10 +87,10 @@ function Examiner() {
                       Bakit ka na naman naninilip diyan?
                     </p>
                     <div className="flex gap-1">
-                      <button className="w-16 text-sm font-light bg-tertiary text-white py-2 rounded hover:bg-blue-600 focus:outline-none focus:ring focus:ring-blue-300">
+                      <button className="w-16 text-sm font-light bg-tertiary text-white py-2 rounded opacity-90 hover:opacity-100 focus:outline-none focus:ring focus:ring-blue-300">
                         Edit
                       </button>
-                      <button className="w-16 text-sm font-light bg-accent text-white py-2 rounded hover:bg-blue-600 focus:outline-none focus:ring focus:ring-blue-300">
+                      <button className="w-16 text-sm font-light bg-accent text-white py-2 rounded opacity-90 hover:opacity-100 focus:outline-none focus:ring focus:ring-blue-300">
                         Delete
                       </button>
                     </div>
@@ -98,132 +101,23 @@ function Examiner() {
                 <div className="flex gap-2 flex-wrap">
                   {/* One question card */}
                   <div className="bg-secondary w-full flex justify-between items-center rounded-lg p-2">
-                    <p className="text-sm lg:text-lg text-light max-w-[100px] sm:max-w-[150px] md:max-w-[200px] lg:max-w-[250px] xl:max-w-[320px] overflow-hidden text-ellipsis whitespace-nowrap">
+                    <p className="text-sm lg:text-lg text-light max-w-[100px] sm:max-w-[150px] md:max-w-[200px] lg:max-w-[300px] xl:max-w-[350px] overflow-hidden text-ellipsis whitespace-nowrap">
                       Bakit ka na naman naninilip diyan?
                     </p>
                     <div className="flex gap-1">
-                      <button className="w-16 text-sm font-light bg-tertiary text-white py-2 rounded hover:bg-blue-600 focus:outline-none focus:ring focus:ring-blue-300">
+                      <button className="w-16 text-sm font-light bg-tertiary text-white py-2 rounded opacity-90 hover:opacity-100 focus:outline-none focus:ring focus:ring-blue-300">
                         Edit
                       </button>
-                      <button className="w-16 text-sm font-light bg-accent text-white py-2 rounded hover:bg-blue-600 focus:outline-none focus:ring focus:ring-blue-300">
+                      <button className="w-16 text-sm font-light bg-accent text-white py-2 rounded opacity-90 hover:opacity-100 focus:outline-none focus:ring focus:ring-blue-300">
                         Delete
                       </button>
                     </div>
                   </div>
                 </div>
 
-                {/* Example question input */}
-                <div className="flex gap-2 flex-wrap">
-                  {/* One question card */}
-                  <div className="bg-secondary w-full flex justify-between items-center rounded-lg p-2">
-                    <p className="text-sm lg:text-lg text-light max-w-[100px] sm:max-w-[150px] md:max-w-[200px] lg:max-w-[250px] xl:max-w-[320px] overflow-hidden text-ellipsis whitespace-nowrap">
-                      Bakit ka na naman naninilip diyan?
-                    </p>
-                    <div className="flex gap-1">
-                      <button className="w-16 text-sm font-light bg-tertiary text-white py-2 rounded hover:bg-blue-600 focus:outline-none focus:ring focus:ring-blue-300">
-                        Edit
-                      </button>
-                      <button className="w-16 text-sm font-light bg-accent text-white py-2 rounded hover:bg-blue-600 focus:outline-none focus:ring focus:ring-blue-300">
-                        Delete
-                      </button>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Example question input */}
-                <div className="flex gap-2 flex-wrap">
-                  {/* One question card */}
-                  <div className="bg-secondary w-full flex justify-between items-center rounded-lg p-2">
-                    <p className="text-sm lg:text-lg text-light max-w-[100px] sm:max-w-[150px] md:max-w-[200px] lg:max-w-[250px] xl:max-w-[320px] overflow-hidden text-ellipsis whitespace-nowrap">
-                      Bakit ka na naman naninilip diyan?
-                    </p>
-                    <div className="flex gap-1">
-                      <button className="w-16 text-sm font-light bg-tertiary text-white py-2 rounded hover:bg-blue-600 focus:outline-none focus:ring focus:ring-blue-300">
-                        Edit
-                      </button>
-                      <button className="w-16 text-sm font-light bg-accent text-white py-2 rounded hover:bg-blue-600 focus:outline-none focus:ring focus:ring-blue-300">
-                        Delete
-                      </button>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Example question input */}
-                <div className="flex gap-2 flex-wrap">
-                  {/* One question card */}
-                  <div className="bg-secondary w-full flex justify-between items-center rounded-lg p-2">
-                    <p className="text-sm lg:text-lg text-light max-w-[100px] sm:max-w-[150px] md:max-w-[200px] lg:max-w-[250px] xl:max-w-[320px] overflow-hidden text-ellipsis whitespace-nowrap">
-                      Bakit ka na naman naninilip diyan?
-                    </p>
-                    <div className="flex gap-1">
-                      <button className="w-16 text-sm font-light bg-tertiary text-white py-2 rounded hover:bg-blue-600 focus:outline-none focus:ring focus:ring-blue-300">
-                        Edit
-                      </button>
-                      <button className="w-16 text-sm font-light bg-accent text-white py-2 rounded hover:bg-blue-600 focus:outline-none focus:ring focus:ring-blue-300">
-                        Delete
-                      </button>
-                    </div>
-                  </div>
-                </div>
-
-
-                {/* Example question input */}
-                <div className="flex gap-2 flex-wrap">
-                  {/* One question card */}
-                  <div className="bg-secondary w-full flex justify-between items-center rounded-lg p-2">
-                    <p className="text-sm lg:text-lg text-light max-w-[100px] sm:max-w-[150px] md:max-w-[200px] lg:max-w-[250px] xl:max-w-[320px] overflow-hidden text-ellipsis whitespace-nowrap">
-                      Bakit ka na naman naninilip diyan?
-                    </p>
-                    <div className="flex gap-1">
-                      <button className="w-16 text-sm font-light bg-tertiary text-white py-2 rounded hover:bg-blue-600 focus:outline-none focus:ring focus:ring-blue-300">
-                        Edit
-                      </button>
-                      <button className="w-16 text-sm font-light bg-accent text-white py-2 rounded hover:bg-blue-600 focus:outline-none focus:ring focus:ring-blue-300">
-                        Delete
-                      </button>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Example question input */}
-                <div className="flex gap-2 flex-wrap">
-                  {/* One question card */}
-                  <div className="bg-secondary w-full flex justify-between items-center rounded-lg p-2">
-                    <p className="text-sm lg:text-lg text-light max-w-[100px] sm:max-w-[150px] md:max-w-[200px] lg:max-w-[250px] xl:max-w-[320px] overflow-hidden text-ellipsis whitespace-nowrap">
-                      Bakit ka na naman naninilip diyan?
-                    </p>
-                    <div className="flex gap-1">
-                      <button className="w-16 text-sm font-light bg-tertiary text-white py-2 rounded hover:bg-blue-600 focus:outline-none focus:ring focus:ring-blue-300">
-                        Edit
-                      </button>
-                      <button className="w-16 text-sm font-light bg-accent text-white py-2 rounded hover:bg-blue-600 focus:outline-none focus:ring focus:ring-blue-300">
-                        Delete
-                      </button>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Example question input */}
-                <div className="flex gap-2 flex-wrap">
-                  {/* One question card */}
-                  <div className="bg-secondary w-full flex justify-between items-center rounded-lg p-2">
-                    <p className="text-sm lg:text-lg text-light max-w-[100px] sm:max-w-[150px] md:max-w-[200px] lg:max-w-[250px] xl:max-w-[320px] overflow-hidden text-ellipsis whitespace-nowrap">
-                      Bakit ka na naman naninilip diyan?
-                    </p>
-                    <div className="flex gap-1">
-                      <button className="w-16 text-sm font-light bg-tertiary text-white py-2 rounded hover:bg-blue-600 focus:outline-none focus:ring focus:ring-blue-300">
-                        Edit
-                      </button>
-                      <button className="w-16 text-sm font-light bg-accent text-white py-2 rounded hover:bg-blue-600 focus:outline-none focus:ring focus:ring-blue-300">
-                        Delete
-                      </button>
-                    </div>
-                  </div>
-                </div>
               </div>
 
             </div>
-
 
           </div>
         </div>

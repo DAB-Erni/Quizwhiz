@@ -4,7 +4,7 @@ import Navbar from "./Navbar";
 import { Link } from 'react-router-dom';
 
 
-function Users() {
+const  Users = () => {
 
   return (
     <>
@@ -28,7 +28,7 @@ function Users() {
                   <div className="bg-secondary gap-6 flex flex-col justify-center items-center rounded-lg py-5 px-3 w-full">
                     <p className="text-sm py-2 lg:text-lg text-light max-w-[100px] sm:max-w-[150px] md:max-w-[200px] lg:max-w-[300px] xl:max-w-[350px]">
                     Trivia Challenge
-                    </p>
+                    </p> 
                     <div className="flex gap-1">
                         <Link to="/examinee">
                         <button className="font-normal text-xs w-full text-tertiary border-tertiary border-2 flex justify-center gap-2 items-center text-md px-8 py-3 rounded hover:bg-tertiary hover:text-light focus:outline-none focus:ring focus:ring-blue-300">Take Test</button>    
@@ -64,8 +64,6 @@ function Users() {
                     </div>
                   </div>
                 </div>
-
-                
               </div>
             </div>
           </div>
