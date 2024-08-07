@@ -1,12 +1,32 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "../App.css";
 import Navbar from "./Navbar";
-import { Link } from 'react-router-dom';
-
+import { Link, useParams } from 'react-router-dom';
+import {getQuizById } from '../services/quizService';
 
 function Examiner() {
   const [question, setQuestion] = useState("");
   const [answer, setAnswer] = useState("");
+
+  const {id} = useParams();
+  const [quiz, setQuiz] = useState(null);
+
+  useEffect(() => {
+    const fetchQuiz = async () => {
+      try {
+        const response = await getQuizById(id);
+        setQuiz(response.data);
+      } catch (error) {
+        console.error("Error fetching quiz:", error);
+      }
+    }
+
+    fetchQuiz();
+  }, []);
+
+  if(!quiz) {
+    return <div>Loading...</div>
+  }
 
   return (
     <>
