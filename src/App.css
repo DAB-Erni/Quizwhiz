@@ -18,6 +18,10 @@ body {
   background: linear-gradient(90deg, #FF8861 0%, #FE62A2 100%);
 }
 
+.btn-bg:hover {
+  background: #FF8861;
+}
+
 /* Responsiveness for Mobile */
  @media only screen and (max-width: 375px) {
   .cont {
