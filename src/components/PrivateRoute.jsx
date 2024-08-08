@@ -13,11 +13,11 @@ const PrivateRoute = ({ roles }) => {
     // Redirect based on the user's role
     if (currentUser.role === 'admin') {
       return <Navigate to="/admin" />;
-    } else if (currentUser.role === 'user') {
+    } 
+    
+    if (currentUser.role === 'user') {
       return <Navigate to="/user" />;
-    } else {
-      return <Navigate to="/home" />;
-    }
+    } 
   }
 
   return <Outlet />;

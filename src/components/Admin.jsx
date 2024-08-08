@@ -1,12 +1,18 @@
+// src/components/Admin.js
 import { useState, useEffect } from "react";
 import "../App.css";
 import Navbar from "./Navbar";
 import { Link } from 'react-router-dom';
 import Modal from './Modal';
-import { getAllQuizzes, createQuiz } from "../services/quizService";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchQuizzes, addQuiz } from '../actions/quizAction';
 
 function Admin() {
-  const [quizzes, setQuizzes] = useState([]);
+  const dispatch = useDispatch();
+  const quizzes = useSelector((state) => state.quiz.quizzes);
+  const loading = useSelector((state) => state.quiz.loading);
+  const error = useSelector((state) => state.quiz.error);
+
   const [quizTitle, setQuizTitle] = useState('');
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -15,14 +21,8 @@ function Admin() {
   };
 
   useEffect(() => {
-    const fetchQuizzes = async () => {
-      const response = await getAllQuizzes();
-      setQuizzes(response.data);
-    };
-
-    fetchQuizzes();
-  }, []);
-
+    dispatch(fetchQuizzes());
+  }, [dispatch]);
 
   const handleCloseModal = () => {
     setIsModalOpen(false);
@@ -30,15 +30,11 @@ function Admin() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const newQuiz = {title: quizTitle, userId: 1};
-    await createQuiz(newQuiz);
+    const newQuiz = { title: quizTitle, userId: 1 };
+    dispatch(addQuiz(newQuiz));
     setIsModalOpen(false);
     setQuizTitle('');
     console.log('Quiz Created');
-
-    const response = await getAllQuizzes();
-    setQuizzes(response.data);
-
   };
 
   return (
@@ -53,12 +49,11 @@ function Admin() {
           <hr className="border-b-0 border-secondary" />
 
           <div className="flex flex-col gap-4">
-            {/* Container for List of Questions */}
             <div className="flex-col flex-wrap">
-              {/* Questions Container */}
               <div className="flex flex-wrap gap-2 h-full max-h-full overflow-y-auto justify-center">
-                
-                {/* Quiz Cards */}
+                {loading && <p>Loading...</p>}
+                {error && <p>Error: {error}</p>}
+
                 {quizzes.map((quiz) => (
                   <div key={quiz.createdQuizId} className="flex gap-2 w-full md:w-1/3 lg:w-1/4">
                     <div className="bg-secondary gap-6 flex flex-col justify-center items-center rounded-lg py-5 px-3 w-full">
@@ -74,8 +69,7 @@ function Admin() {
                       </div>
                     </div>
                   </div>
-                ))};
-
+                ))}
               </div>
             </div>
           </div>
@@ -104,7 +98,7 @@ function Admin() {
               type="text"
               className="shadow appearance-none border rounded w-full py-2 px-3 text-primary leading-tight focus:outline-none focus:shadow-outline"
               value={quizTitle}
-              onChange = {(e) => setQuizTitle(e.target.value)}
+              onChange={(e) => setQuizTitle(e.target.value)}
               required
             />
           </div>
@@ -117,13 +111,12 @@ function Admin() {
             >
               Close
             </button>
-              <button
-                type="submit"
-                className="bg-tertiary opacity-70 hover:bg-tertiary hover:opacity-100 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-              >
-                Submit
-              </button>            
-
+            <button
+              type="submit"
+              className="bg-tertiary opacity-70 hover:bg-tertiary hover:opacity-100 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+            >
+              Submit
+            </button>
           </div>
         </form>
       </Modal>

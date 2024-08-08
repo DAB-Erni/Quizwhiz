@@ -2,9 +2,18 @@ import { useState } from 'react'
 import '../App.css'
 import logo from '../assets/quizwhiz-logo.svg'
 import logoutIcon from '../assets/logout.svg'
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { logout } from '../actions/userAction';
 
 function Navbar() {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    dispatch(logout());
+    navigate('/home');
+  };
 
   return (
     <>
@@ -16,12 +25,10 @@ function Navbar() {
 
             <div>
 
-            <Link to="/">
-                <button className="w-32 btn-bg flex justify-center gap-2 items-center text-md text-white py-3 rounded hover:bg-tertiary focus:outline-none focus:ring focus:ring-blue-300">
-                <img src={logoutIcon} alt="quiz app logo" />
-                    <span>Logout</span>
-                </button>
-            </Link>
+              <button className="w-32 btn-bg flex justify-center gap-2 items-center text-md text-white py-3 rounded hover:bg-tertiary focus:outline-none focus:ring focus:ring-blue-300" onClick={handleLogout}>
+              <img src={logoutIcon} alt="quiz app logo" />
+                  <span>Logout</span>
+              </button>
 
             </div>
         </div>

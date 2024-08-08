@@ -1,10 +1,26 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "../App.css";
 import Navbar from "./Navbar";
 import { Link } from 'react-router-dom';
+import { getAllQuizzes } from '../services/quizService';
 
 
 const  Users = () => {
+
+  const [quizzes, setQuizzes] = useState([]);
+
+  useEffect(() => {
+    const fetchQuizzes = async () => {
+      try {
+        const response = await getAllQuizzes();
+        setQuizzes(response.data);
+      } catch (error) {
+        console.error("Error fetching quizzes:", error);
+      }
+    };
+
+    fetchQuizzes();
+  }, []);
 
   return (
     <>
@@ -23,47 +39,24 @@ const  Users = () => {
               {/* Questions Container */}
               <div className="flex flex-wrap gap-2 h-full max-h-full overflow-y-auto justify-center">
 
-                <div className="flex gap-2 w-full md:w-1/3 lg:w-1/4">
-                  {/* One Collection card */}
-                  <div className="bg-secondary gap-6 flex flex-col justify-center items-center rounded-lg py-5 px-3 w-full">
-                    <p className="text-sm py-2 lg:text-lg text-light max-w-[100px] sm:max-w-[150px] md:max-w-[200px] lg:max-w-[300px] xl:max-w-[350px]">
-                    Trivia Challenge
-                    </p> 
-                    <div className="flex gap-1">
-                        <Link to="/examinee">
-                        <button className="font-normal text-xs w-full text-tertiary border-tertiary border-2 flex justify-center gap-2 items-center text-md px-8 py-3 rounded hover:bg-tertiary hover:text-light focus:outline-none focus:ring focus:ring-blue-300">Take Test</button>    
+              {quizzes.map((quiz) => (
+                  <div key={quiz.createdQuizId} className="flex gap-2 w-full md:w-1/3 lg:w-1/4">
+                    {/* One Collection card */}
+                    <div className="bg-secondary gap-6 flex flex-col justify-center items-center rounded-lg py-5 px-3 w-full">
+                      <p className="text-sm py-2 lg:text-lg text-light max-w-[100px] sm:max-w-[150px] md:max-w-[200px] lg:max-w-[300px] xl:max-w-[350px]">
+                        {quiz.title}
+                      </p>
+                      <div className="flex gap-1">
+                        <Link to={`/examinee/${quiz.createdQuizId}`}>
+                          <button className="font-normal text-xs w-full text-tertiary border-tertiary border-2 flex justify-center gap-2 items-center text-md px-8 py-3 rounded hover:bg-tertiary hover:text-light focus:outline-none focus:ring focus:ring-blue-300">
+                            Take Test
+                          </button>
                         </Link>
+                      </div>
                     </div>
                   </div>
-                </div>
+                ))}
 
-                <div className="flex gap-2 w-full md:w-1/3 lg:w-1/4">
-                  {/* One Collection card */}
-                  <div className="bg-secondary gap-6 flex flex-col justify-center items-center rounded-lg py-5 px-3 w-full">
-                    <p className="text-sm py-2 lg:text-lg text-light max-w-[100px] sm:max-w-[150px] md:max-w-[200px] lg:max-w-[300px] xl:max-w-[350px]">
-                    Trivia Challenge
-                    </p>
-                    <div className="flex gap-1">
-                        <Link to="/examinee">
-                        <button className="font-normal text-xs w-full text-tertiary border-tertiary border-2 flex justify-center gap-2 items-center text-md px-8 py-3 rounded hover:bg-tertiary hover:text-light focus:outline-none focus:ring focus:ring-blue-300">Take Test</button>    
-                        </Link>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="flex gap-2 w-full md:w-1/3 lg:w-1/4">
-                  {/* One Collection card */}
-                  <div className="bg-secondary gap-6 flex flex-col justify-center items-center rounded-lg py-5 px-3 w-full">
-                    <p className="text-sm py-2 lg:text-lg text-light max-w-[100px] sm:max-w-[150px] md:max-w-[200px] lg:max-w-[300px] xl:max-w-[350px]">
-                    Trivia Challenge
-                    </p>
-                    <div className="flex gap-1">
-                        <Link to="/examinee">
-                        <button className="font-normal text-xs w-full text-tertiary border-tertiary border-2 flex justify-center gap-2 items-center text-md px-8 py-3 rounded hover:bg-tertiary hover:text-light focus:outline-none focus:ring focus:ring-blue-300">Take Test</button>    
-                        </Link>
-                    </div>
-                  </div>
-                </div>
               </div>
             </div>
           </div>

@@ -14,8 +14,8 @@ function Home() {
 
             <div className="pt-8">
               <p className="text-xs py-2 md:text-sm lg:text-lg">(Create and manages quizzes)</p>
-              <Link to="/login?role=admin">
-                  <button className="w-full bg-tertiary flex justify-center gap-2 items-center text-md text-white py-3 rounded hover:bg-blue-600 focus:outline-none focus:ring focus:ring-blue-300">EXAMINER</button>         
+              <Link to="/login">
+                  <button className="w-full bg-tertiary flex justify-center gap-2 items-center text-md text-white py-3 rounded opacity-90 hover:bg-tertiary hover:opacity-100 focus:outline-none focus:ring focus:ring-blue-300">EXAMINER</button>         
               </Link>
 
             </div>
@@ -23,8 +23,8 @@ function Home() {
             <div className="pt-8">
               <p className="text-xs py-2 md:text-sm lg:text-lg">(Take quizzes and test your knowledge)</p>
 
-              <Link to="/login?role=user">
-                <button className="w-full bg-accent flex justify-center gap-2 items-center text-md text-white py-3 rounded hover:bg-blue-600 focus:outline-none focus:ring focus:ring-blue-300">EXAMINEE</button>
+              <Link to="/login">
+                <button className="w-full bg-accent flex justify-center gap-2 items-center text-md text-white py-3 rounded opacity-90 hover:bg-accent hover:opacity-100 focus:outline-none focus:ring focus:ring-blue-300">EXAMINEE</button>
               </Link>
 
             </div>
