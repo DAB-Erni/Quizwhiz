@@ -55,13 +55,11 @@ export const updateQuestion = async (quizId, questionId, updatedData) => {
 //DELETE QUESTION
 export const deleteQuestion = async (quizId, questionId) => {
     const url = `${QUESTION_API_URL}/${quizId}/questions/${questionId}`;
-    console.log('Sending request to delete question:', url); // Debugging log
     try {
         const response = await axios.delete(url);
-        console.log('Response from server:', response); // Debugging log
         return response;
     } catch (error) {
-        console.error('Error in deleteQuestion:', error.response ? error.response.data : error.message); // Detailed error logging
+        console.error('Error in deleteQuestion:', error.response ? error.response.data : error.message);
         throw error;
     }
 };

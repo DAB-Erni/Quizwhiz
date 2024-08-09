@@ -1,12 +1,11 @@
 import { useState, useEffect } from "react";
-import { useParams, useNavigate, Link } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import Navbar from "./Navbar";
-import { getQuizById, submitAnswers } from '../services/quizService'; // Import necessary functions
+import { getQuizById, submitAnswers } from '../services/quizService';
 import Modal from './Modal';
 
 function Examinee() {
   const { quizId } = useParams();
-  const navigate = useNavigate();
   const [questions, setQuestions] = useState([]);
   const [answers, setAnswers] = useState({});
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -15,13 +14,13 @@ function Examinee() {
   useEffect(() => {
     const fetchQuiz = async () => {
       try {
-        console.log('Fetching quiz with ID:', quizId); // Log the quizId
+        console.log('Fetching quiz with ID:', quizId);
         const response = await getQuizById(quizId);
         const quiz = response.data;
-        console.log('Fetched quiz:', quiz); // Log the fetched quiz
+        console.log('Fetched quiz:', quiz);
         if (quiz && quiz.questions) {
           setQuestions(quiz.questions);
-          console.log('Fetched questions:', quiz.questions); // Log the fetched questions
+          console.log('Fetched questions:', quiz.questions);
         } else {
           console.error("No questions found for this quiz.");
         }
@@ -42,9 +41,9 @@ function Examinee() {
     }));
   };
 
-  const handleOpenModal = () => {
-    setIsModalOpen(true);
-  };
+  // const handleOpenModal = () => {
+  //   setIsModalOpen(true);
+  // };
 
   const handleCloseModal = () => {
     setIsModalOpen(false);
@@ -53,9 +52,7 @@ function Examinee() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-        console.log('Submitting answers:', answers); // Log the answers being submitted
         const response = await submitAnswers(quizId, answers);
-        console.log('Submission response:', response); // Log the response
         setScore(response.data.score);
         setIsModalOpen(true);
     } catch (error) {
@@ -66,15 +63,15 @@ function Examinee() {
   return (
     <>
       <Navbar />
-      <div className="pt-[120px] cont w-full h-screen bg-slate-700 px-4 flex items-center relative">
-        <div className="mx-auto w-full max-w-[343px] max-h-full bg-primary opacity-70 rounded-2xl flex flex-col justify-center px-4 py-8 text-center gap-6 md:w-full md:max-w-[400px] lg:max-w-[450px]">
+      <div className="pt-[100px] cont w-full h-full bg-slate-700 pb-4 flex items-center relative">
+        <div className="mx-auto w-full max-w-[343px] h-full max-h-full bg-primary opacity-80 rounded-2xl flex flex-col justify-start px-4 py-8 text-center gap-6 md:w-full md:max-w-[400px] lg:max-w-[760px]">
           <h2 className="text-xl uppercase tracking-[.25em] text-white ">
             Examinee Page
           </h2>
           <hr className="border-b-2 border-secondary" />
 
           {/* Questions Container */}
-          <div className="mx-auto w-full max-w-[343px] max-h-[720px] bg-primary opacity-70 rounded-2xl flex flex-col justify-start px-4 py-2 text-center gap-6 overflow-y-auto md:w-full md:max-w-[400px] lg:max-w-[450px]">
+          <div className="mx-auto w-full max-w-[343px] max-h-full bg-primary opacity-80 rounded-2xl flex flex-col justify-start px-4 py-2 text-center gap-6 md:w-full md:max-w-[400px] lg:max-w-[750px]">
             {questions.length > 0 ? (
               questions.map((q) => (
                 <div key={q.questionId} className="text-center">
@@ -122,21 +119,21 @@ function Examinee() {
       </div>
 
       <Modal isOpen={isModalOpen} onClose={handleCloseModal}>
-        <h2 className="text-2xl font-normal text-center text-black">Your Score</h2>
-        <p className="text-8xl font-medium py-10 text-center text-secondary">{score}</p>
+        {score == questions.length ? <h2 className="text-2xl font-normal text-center text-black">Your Score 🎉</h2> : <h2 className="text-2xl font-normal text-center text-black">Your Score</h2>}
+        <p className="text-8xl font-medium py-10 text-center text-secondary">{score}<span className="text-6xl opacity-80"> / {questions.length}</span></p>
         <div className="flex justify-end">
           <Link to="/user">
             <button
               type="button"
               onClick={handleCloseModal}
-              className="bg-accent opacity-70 hover:bg-acent hover:opacity-100 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mr-2"
+              className="opacity-80 hover:bg-acent hover:opacity-100 border-2 border-accent text-accent hover:bg-accent hover:text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mr-2"
             >
               Back to Quizzes
             </button>
           </Link>
           <button
             type="button"
-            className="bg-tertiary opacity-70 hover:bg-tertiary hover:opacity-100 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+            className="bg-tertiary opacity-80 hover:bg-tertiary border-2 border-tertiary hover:opacity-100 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
             onClick={() => window.location.reload()}
           >
             Retake Quiz

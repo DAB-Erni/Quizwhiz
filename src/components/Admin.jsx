@@ -41,8 +41,8 @@ function Admin() {
     <>
       <Navbar />
 
-      <div className="cont w-full h-full md:h-screen bg-slate-700 pt-[140px] py-14 px-4 flex items-center relative">
-        <div className="mx-auto w-full max-w-[343px] h-auto bg-primary opacity-70 rounded-2xl flex flex-col justify-start px-4 py-8 text-center gap-5 md:w-full md:max-w-[768px] lg:max-w-[1080px]">
+      <div className="cont w-full h-screen md:h-screen bg-slate-700 pt-[12px] py-14 px-4 flex items-center relative">
+        <div className="mx-auto w-full max-w-[343px] h-auto bg-primary opacity-80 rounded-2xl flex flex-col justify-start px-4 py-8 text-center gap-5 md:w-full md:max-w-[768px] lg:max-w-[1080px]">
           <h2 className="text-xl uppercase tracking-[.25em] text-white ">
             QUIZ COLLECTIONS
           </h2>
@@ -107,13 +107,13 @@ function Admin() {
             <button
               type="button"
               onClick={handleCloseModal}
-              className="bg-accent opacity-70 hover:bg-acent hover:opacity-100 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mr-2"
+              className="opacity-60 hover:opacity-100 border-2 border-red-500 text-red-600 hover:bg-red-500 hover:text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mr-2"
             >
               Close
             </button>
             <button
               type="submit"
-              className="bg-tertiary opacity-70 hover:bg-tertiary hover:opacity-100 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+              className="bg-tertiary opacity-90 hover:bg-tertiary border-2 border-tertiary hover:opacity-100 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
             >
               Submit
             </button>

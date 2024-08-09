@@ -4,6 +4,7 @@ import Navbar from "./Navbar";
 import { getQuizById, deleteQuiz, addQuestionToQuiz, updateQuestion, deleteQuestion } from '../services/quizService';
 import authService from '../services/auth.service'; 
 import EditableTitle from './EditableTitle';
+import Modal from './Modal';
 
 function Examiner() {
   const { id } = useParams();
@@ -13,6 +14,8 @@ function Examiner() {
   const [answer, setAnswer] = useState("");
   const [currentUser, setCurrentUser] = useState(null);
   const [editingQuestionId, setEditingQuestionId] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  
 
   useEffect(() => {
     const fetchQuiz = async () => {
@@ -98,10 +101,7 @@ function Examiner() {
 
   const handleDeleteQuestion = async (questionId) => {
     try {
-      console.log('Deleting question:', questionId); // Debugging log
       await deleteQuestion(id, questionId);
-
-      // Remove the question from the state
       setQuiz((prevQuiz) => ({
         ...prevQuiz,
         questions: prevQuiz.questions.filter((q) => q.questionId !== questionId),
@@ -115,20 +115,35 @@ function Examiner() {
     return <div>Loading...</div>;
   }
 
+  const handleOpenModal = () => {
+    setIsModalOpen(true);
+  };
+
+  
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+  };
+
   return (
     <>
       <Navbar />
-      <div className="cont w-full h-full md:h-screen bg-slate-700 pt-[140px] py-14 px-4 flex items-center relative">
-        <div className="mx-auto w-full max-w-[343px] h-auto bg-primary opacity-70 rounded-2xl flex flex-col justify-start px-4 py-8 text-center gap-5 md:w-full md:max-w-[768px] lg:max-w-[1080px]">
+      <div className="pt-[12px] cont w-full h-full min-h-screen bg-slate-700 px-4 flex items-center relative">
+        <div className="mx-auto w-full max-w-[343px] h-auto bg-primary opacity-80 rounded-2xl flex flex-col justify-start px-4 py-8 text-center gap-5 md:w-full md:max-w-[768px] lg:max-w-[1080px]">
           <h2 className="text-xl uppercase tracking-[.25em] text-white ">
             Examiner Page
           </h2>
           <hr className="border-b-0 border-secondary" />
 
-          <div className="flex flex-col gap-4 md:flex-row flex-1 ">
-            <div className="bg-secondary w-full max-h-screen rounded-2xl px-4 py-8 md:max-w-[50%] md:max-h-[446px]">
+          <div className="flex flex-col gap-4 md:flex-row flex-1">
+            <div className=" md:w-1/2">
+            <h3 className="pt-8 pb-5 text-light text-xl font-medium">
+              Customize your Quiz
+            </h3>
+            
+            <div className="bg-secondary w-full max-h-full rounded-2xl px-4 py-8 md:max-w-[100%]">
+              
               <form onSubmit={handleAddOrUpdateQuestion}>
-                <div className="flex flex-col text-left text-white font-medium gap-2">
+                <div className="flex flex-col text-left text-white font-medium gap-3 pb-5">
                   <EditableTitle quiz={quiz} currentUser={currentUser} onTitleUpdate={handleTitleUpdate} />
 
                   <label htmlFor="question">Question</label>
@@ -160,15 +175,16 @@ function Examiner() {
                 </button>
 
                 <Link to="/admin">
-                  <button className="font-normal w-full text-tertiary border-tertiary border-2 flex justify-center gap-2 items-center text-md mt-2 py-3 rounded hover:bg-tertiary hover:text-light focus:outline-none focus:ring focus:ring-blue-300">
+                  <button className="font-normal w-full text-tertiary border-tertiary border-2 flex justify-center gap-2 items-center text-md mt-4 py-3 rounded hover:bg-tertiary hover:text-light focus:outline-none focus:ring focus:ring-blue-300">
                     Back to Collections
                   </button>
                 </Link>
 
-                <button className="font-medium w-full text-red-400 flex justify-center gap-2 items-center text-md mt-2 py-3 rounded hover:font-medium hover:text-accent focus:outline-none focus:ring focus:ring-blue-300" onClick={handleDeleteQuiz}>
-                  Delete Test
+                <button className="font-medium w-full text-red-400 flex justify-center gap-2 items-center text-md mt-2 py-3 rounded hover:font-medium hover:text-accent focus:outline-none focus:ring focus:ring-blue-300" onClick={handleOpenModal}>
+                  Delete Quiz
                 </button>
               </form>
+            </div>
             </div>
 
             <div className="flex-1">
@@ -176,7 +192,7 @@ function Examiner() {
                 List of Quiz Questions
               </h3>
 
-              <div className="flex flex-col gap-2 h-full max-h-[350px] md:max-h-[70%] lg:max-h-[80%] overflow-y-auto">
+              <div className="flex flex-col gap-2 h-full max-h-[350px] py-6 md:max-h-[70%] lg:max-h-[75%] overflow-y-auto">
                 {quiz.questions.map((q, i) => (
                   <div key={i} className="flex gap-2 flex-wrap">
                     <div className="bg-secondary w-full flex justify-between items-center rounded-lg p-2">
@@ -205,6 +221,31 @@ function Examiner() {
           </div>
         </div>
       </div>
+
+      <Modal isOpen={isModalOpen} onClose={handleCloseModal}>
+        <h2 className="text-2xl font-semibold mb-4 text-center text-secondary">Delete Confirmation</h2>
+        <form onSubmit={handleDeleteQuiz}>
+          <div className="mb-4">
+            <p>Do you really want to remove this quiz?</p>
+          </div>
+
+          <div className="flex justify-end">
+            <button
+              type="button"
+              onClick={handleCloseModal}
+              className="opacity-70 hover:opacity-100 border-2 border-red-500 text-red-600 hover:bg-red-500 hover:text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mr-2"
+            >
+              Cancel
+            </button>
+            <button
+              type="submit"
+              className="bg-red-400 opacity-80 hover:border-red-600 hover:bg-red-600 border-2 border-red-400 hover:opacity-100 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+            >
+              Delete
+            </button>
+          </div>
+        </form>
+      </Modal>
     </>
   );
 }

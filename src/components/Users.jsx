@@ -25,8 +25,8 @@ const  Users = () => {
   return (
     <>
     <Navbar />
-      <div className="cont w-full h-full md:h-screen bg-slate-700 pt-[140px] py-14 px-4 flex items-center relative">
-        <div className="mx-auto w-full max-w-[343px] h-auto bg-primary opacity-70 rounded-2xl flex flex-col justify-start px-4 py-8 text-center gap-5 md:w-full md:max-w-[768px] lg:max-w-[1080px]">
+      <div className="cont w-full h-screen md:h-screen bg-slate-700 pt-[12px] py-14 px-4 flex items-center relative">
+        <div className="mx-auto w-full max-w-[343px] h-auto bg-primary opacity-80 rounded-2xl flex flex-col justify-start px-4 py-8 text-center gap-5 md:w-full md:max-w-[768px] lg:max-w-[1080px]">
           <h2 className="text-xl uppercase tracking-[.25em] text-white ">
             Test your Knowledge
           </h2>

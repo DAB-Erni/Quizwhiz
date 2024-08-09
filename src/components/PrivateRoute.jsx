@@ -1,6 +1,5 @@
-import React from 'react';
 import { Navigate, Outlet } from 'react-router-dom';
-import authService from '../services/auth.service'; // Adjust the path as necessary
+import authService from '../services/auth.service';
 
 const PrivateRoute = ({ roles }) => {
   const currentUser = authService.getCurrentUser();
@@ -10,7 +9,6 @@ const PrivateRoute = ({ roles }) => {
   }
 
   if (roles && roles.length > 0 && !roles.includes(currentUser.role)) {
-    // Redirect based on the user's role
     if (currentUser.role === 'admin') {
       return <Navigate to="/admin" />;
     } 

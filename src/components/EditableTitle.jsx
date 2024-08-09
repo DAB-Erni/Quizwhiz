@@ -29,7 +29,7 @@ const EditableTitle = ({ quiz, currentUser, onTitleUpdate }) => {
   };
 
   return (
-    <div className="flex justify-center pb-2 text-white text-xl font-medium text-center">
+    <div className="flex justify-center py-4 text-white text-xl font-medium text-center">
       {isEditing ? (
         <input
           type="text"
